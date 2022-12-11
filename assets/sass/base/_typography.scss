@@ -1,101 +1,223 @@
 ///
-/// Big Picture by HTML5 UP
-/// html5up.net | @ajlkn
-/// Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+/// Polymorph by Pixelarity
+/// pixelarity.com | hello@pixelarity.com
+/// License: pixelarity.com/license
 ///
 
 /* Type */
 
-	body, input, textarea, select {
-		font-family: _font(family);
-		font-weight: _font(weight);
-		font-size: 18pt;
-		line-height: 1.75em;
+	body {
+		background-color: _palette(bg);
 		color: _palette(fg);
-		letter-spacing: 0.025em;
+	}
 
-		@include breakpoint('<=xxlarge') {
-			font-size: 17pt;
-		}
+	body, input, select, textarea {
+		font-family: _font(family);
+		font-size: 16pt;
+		font-weight: _font(weight);
+		line-height: 1.6;
 
 		@include breakpoint('<=xlarge') {
-			font-size: 15pt;
+			font-size: 13pt;
 		}
 
 		@include breakpoint('<=large') {
-			font-size: 13pt;
-		}
-
-		@include breakpoint('<=medium') {
-			font-size: 13pt;
-		}
-
-		@include breakpoint('<=small') {
 			font-size: 12pt;
-			line-height: 1.5em;
+		}
+
+		@include breakpoint('<=xxsmall') {
+			font-size: 11pt;
 		}
 	}
 
-	h1, h2, h3, h4, h5, h6 {
-		font-weight: _font(weight-bold);
-		color: inherit;
-		letter-spacing: -0.0325em;
+	a {
+		@include vendor('transition', (
+			'border-bottom-color #{_duration(transition)} ease-in-out',
+			'color #{_duration(transition)} ease-in-out'
+		));
+		text-decoration: none;
+		border-bottom: dotted 1px;
 
-		a {
-			color: inherit;
-			text-decoration: none;
+		&:before {
+			@include vendor('transition', (
+				'color #{_duration(transition)} ease-in-out'
+			));
 		}
-	}
 
-	h2 {
-		font-size: 2.25em;
-		line-height: 1.25em;
-		letter-spacing: -0.05em;
-	}
+		&:hover {
+			color: _palette(accent1, bg) !important;
+			border-bottom-color: transparent;
 
-	@include breakpoint('<=small') {
-		h2 {
-			font-size: 1.5em;
+			&:before {
+				color: _palette(accent1, bg) !important;
+			}
 		}
 	}
 
 	strong, b {
 		font-weight: _font(weight-bold);
-		color: inherit;
 	}
 
 	em, i {
 		font-style: italic;
 	}
 
-	a {
-		@include vendor('transition', 'color #{_duration(transition)} ease-in-out');
-		color: _palette(accent1, bg);
+	p {
+		margin: 0 0 _size(element-margin) 0;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: _font(weight-bold);
+		line-height: 1.3;
+		margin: (_size(element-margin) * 1.25) 0 (_size(element-margin) * 0.5) 0;
+		text-transform: uppercase;
+		letter-spacing: _font(letter-spacing-heading);
+
+		a {
+			border-bottom: 0;
+			color: inherit;
+			text-decoration: none;
+		}
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	h2 {
+		font-size: 1.35em;
+	}
+
+	h3 {
+		font-size: 1.2em;
+	}
+
+	h4 {
+		font-size: 1em;
+	}
+
+	h5 {
+		font-size: 0.9em;
+	}
+
+	h6 {
+		font-size: 0.7em;
+	}
+
+	@include breakpoint('<=small') {
+		h2 {
+			font-size: 1.25em;
+		}
+
+		h3 {
+			font-size: 1em;
+		}
 	}
 
 	sub {
+		font-size: 0.8em;
 		position: relative;
 		top: 0.5em;
-		font-size: 0.8em;
 	}
 
 	sup {
+		font-size: 0.8em;
 		position: relative;
 		top: -0.5em;
-		font-size: 0.8em;
+	}
+
+	blockquote {
+		border-left: solid 4px;
+		font-style: italic;
+		margin: 0 0 _size(element-margin) 0;
+		padding: (_size(element-margin) / 4) 0 (_size(element-margin) / 4) _size(element-margin);
+	}
+
+	code {
+		border: solid 1px;
+		font-family: _font(family-fixed);
+		font-size: 0.9em;
+		margin: 0 0.25em;
+		padding: 0.25em 0.65em;
+	}
+
+	pre {
+		-webkit-overflow-scrolling: touch;
+		font-family: _font(family-fixed);
+		font-size: 0.9em;
+		margin: 0 0 _size(element-margin) 0;
+
+		code {
+			display: block;
+			line-height: 1.75;
+			padding: 1em 1.5em;
+			overflow-x: auto;
+		}
 	}
 
 	hr {
 		border: 0;
-		border-top: solid 1px _palette(border);
+		border-bottom: solid 1px;
+		margin: _size(element-margin) 0;
+
+		&.major {
+			margin: (_size(element-margin) * 1.5) 0;
+		}
 	}
 
-	blockquote {
-		border-left: solid 0.5em _palette(border);
-		padding: 1em 0 1em 2em;
-		font-style: italic;
+	.align-left {
+		text-align: left;
 	}
 
-	p, ul, ol, dl, table {
-		margin-bottom: 1em;
+	.align-center {
+		text-align: center;
 	}
+
+	.align-right {
+		text-align: right;
+	}
+
+	@mixin color-typography($p: null) {
+		$highlight: _palette($p, highlight);
+
+		@if $p != null {
+			background-color: _palette($p, bg);
+			color: _palette($p, fg);
+		}
+
+		input, select, textarea {
+			color: _palette($p, fg-bold);
+		}
+
+		a {
+			@if $p == $highlight {
+				color: _palette($p, fg-bold);
+			}
+			@else {
+				color: _palette(accent1, bg);
+			}
+		}
+
+		strong, b {
+			color: _palette($p, fg-bold);
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			color: _palette($p, fg-bold) !important;
+		}
+
+		blockquote {
+			border-left-color: _palette($p, border);
+		}
+
+		code {
+			background: _palette($p, border-bg);
+			border-color: _palette($p, border);
+		}
+
+		hr {
+			border-bottom-color: _palette($p, border);
+		}
+	}
+
+	@include color-typography;
