@@ -55,15 +55,18 @@
 					$img = $this.children('img'),
 					x;
 
-				// Assign image.
-					$this.css('background-image', 'url(' + $img.attr('src') + ')');
+				if($img.attr("src")) {
 
-				// Set background position.
-					if (x = $img.data('position'))
-						$this.css('background-position', x);
+					// Assign image.
+					$this.css("background-image", "url(" + $img.attr("src") + ")");
 
-				// Hide <img>.
+					// Set background position.
+					if ((x = $img.data("position"))) $this.css("background-position", x);
+
+					// Hide <img>.
 					$img.hide();
+
+				}
 
 			});
 
