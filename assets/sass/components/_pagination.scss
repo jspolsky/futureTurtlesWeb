@@ -1,0 +1,121 @@
+///
+/// Polymorph by Pixelarity
+/// pixelarity.com | hello@pixelarity.com
+/// License: pixelarity.com/license
+///
+
+/* Pagination */
+
+	ul.pagination {
+		@include vendor('display', 'inline-flex');
+		list-style: none;
+		padding: 0;
+		border: solid 1px;
+		margin: 0 auto _size(element-margin) auto;
+		cursor: default;
+
+		li {
+			padding: 0;
+
+			a, span {
+				position: relative;
+				border-left: solid 1px;
+				display: inline-block;
+				font-size: 0.8em;
+				min-width: ((_size(element-height) / 0.8) * 1.1);
+				height: (_size(element-height) / 0.8);
+				line-height: (_size(element-height) / 0.8);
+				text-align: center;
+				text-transform: uppercase;
+				font-weight: bold;
+				letter-spacing: _font(letter-spacing-heading);
+				text-decoration: none;
+				border-bottom: 0;
+			}
+
+			a {
+				@include vendor('transition', (
+					'background-color #{_duration(transition)} ease-in-out',
+					'color #{_duration(transition)} ease-in-out'
+				));
+			}
+
+			.next, .previous {
+				@include icon(false, solid);
+				padding: 0 (1.75em / 0.8);
+
+				&:before {
+					display: inline-block;
+					line-height: (_size(element-height) / 0.8) * 1.05875;
+					color: inherit !important;
+				}
+			}
+
+			.previous {
+				&:before {
+					content: '\f053';
+					margin-right: (0.75em / 0.8);
+				}
+			}
+
+			.next {
+				&:before {
+					content: '\f054';
+					float: right;
+					margin-left: (0.75em / 0.8);
+				}
+			}
+
+			&:first-child {
+				a {
+					border-left: 0;
+				}
+			}
+		}
+
+		@include breakpoint('<=xsmall') {
+			li {
+				.page, .extra {
+					display: none;
+				}
+			}
+		}
+	}
+
+	@mixin color-pagination($p: null) {
+		ul.pagination {
+			border-color: _palette($p, border);
+
+			li {
+				a, span {
+					border-left-color: _palette($p, border2);
+				}
+
+				a {
+					color: _palette($p, fg-bold) !important;
+
+					&:hover {
+						background-color: _palette($p, border-bg);
+					}
+
+					&:active {
+						background-color: _palette($p, border2-bg);
+					}
+
+					&.active {
+						color: _palette($p, bg) !important;
+						box-shadow: 0 0 0 1px _palette($p, fg-bold);
+						background-color: _palette($p, fg-bold);
+						border-left-color: _palette($p, fg-bold);
+						z-index: 1;
+					}
+				}
+
+				span {
+					color: _palette($p, fg-light);
+				}
+			}
+		}
+	}
+
+	@include color-pagination;

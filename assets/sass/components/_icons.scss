@@ -1,24 +1,122 @@
 ///
-/// Big Picture by HTML5 UP
-/// html5up.net | @ajlkn
-/// Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+/// Polymorph by Pixelarity
+/// pixelarity.com | hello@pixelarity.com
+/// License: pixelarity.com/license
 ///
 
 /* Icons */
 
 	ul.icons {
 		cursor: default;
+		list-style: none;
+		padding-left: 0;
 
 		li {
 			display: inline-block;
+			padding: 0 1em 0 0;
+
+			&:last-child {
+				padding-right: 0 !important;
+			}
 		}
 
-		a {
-			display: inline-block;
-			width: 2em;
-			height: 2em;
-			line-height: 2em;
-			text-align: center;
-			border: 0;
+		&.style1 {
+		}
+
+		&.style2 {
+			li {
+				font-size: 1.35em;
+				padding: 0 0.5em 0 0;
+
+				a {
+					@include vendor('transition', 'background-color #{_duration(transition)} ease-in-out, color #{_duration(transition)} ease-in-out');
+					display: inline-block;
+					border-radius: 100%;
+					width: 2.125em;
+					height: 2.125em;
+					line-height: 2.125em;
+					text-align: center;
+					background-color: _palette(fg-bold);
+					color: _palette(bg) !important;
+
+					&:hover {
+						background-color: lighten(_palette(fg-bold), 5);
+					}
+
+					&:active {
+						background-color: darken(_palette(fg-bold), 5);
+					}
+
+					&:before {
+						color: inherit !important;
+					}
+
+					&.fa-twitter {
+						background-color: _palette(twitter, bg);
+						color: _palette(twitter, fg) !important;
+
+						&:hover {
+							background-color: lighten(_palette(twitter, bg), 5);
+						}
+
+						&:active {
+							background-color: darken(_palette(twitter, bg), 5);
+						}
+					}
+
+					&.fa-facebook {
+						background-color: _palette(facebook, bg);
+						color: _palette(facebook, fg) !important;
+
+						&:hover {
+							background-color: lighten(_palette(facebook, bg), 5);
+						}
+
+						&:active {
+							background-color: darken(_palette(facebook, bg), 5);
+						}
+					}
+
+					&.fa-instagram {
+						background-color: _palette(instagram, bg);
+						color: _palette(instagram, fg) !important;
+
+						&:hover {
+							background-color: lighten(_palette(instagram, bg), 5);
+						}
+
+						&:active {
+							background-color: darken(_palette(instagram, bg), 5);
+						}
+					}
+
+					&.fa-youtube {
+						background-color: _palette(youtube, bg);
+						color: _palette(youtube, fg) !important;
+
+						&:hover {
+							background-color: lighten(_palette(youtube, bg), 5);
+						}
+
+						&:active {
+							background-color: darken(_palette(youtube, bg), 5);
+						}
+					}
+				}
+			}
 		}
 	}
+
+	@mixin color-icons($p: null) {
+		ul.icons {
+			&.style1 {
+				li {
+					a {
+						color: _palette($p, fg-light);
+					}
+				}
+			}
+		}
+	}
+
+	@include color-icons;

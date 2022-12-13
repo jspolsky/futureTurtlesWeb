@@ -1,53 +1,62 @@
 ///
-/// Big Picture by HTML5 UP
-/// html5up.net | @ajlkn
-/// Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+/// Polymorph by Pixelarity
+/// pixelarity.com | hello@pixelarity.com
+/// License: pixelarity.com/license
 ///
 
 /* Image */
 
 	.image {
-		position: relative;
+		border: 0;
 		display: inline-block;
-
-		&:before {
-			content: '';
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			background: url('images/overlay.png');
-		}
+		position: relative;
 
 		img {
 			display: block;
-			width: 100%;
 		}
 
-		&.featured {
-			display: block;
-			width: 100%;
-			margin: 0 0 2em 0;
-		}
+		&.left,
+		&.right {
+			max-width: 40%;
 
-		&.fit {
-			display: block;
-			width: 100%;
+			img {
+				width: 100%;
+			}
 		}
 
 		&.left {
 			float: left;
-			margin: 0 2em 2em 0;
+			margin: 0 1.5em 1em 0;
+			top: 0.25em;
 		}
 
-		&.centered {
+		&.right {
+			float: right;
+			margin: 0 0 1em 1.5em;
+			top: 0.25em;
+		}
+
+		&.fit {
 			display: block;
-			margin: 0 0 2em 0;
+			margin: 0 0 _size(element-margin) 0;
+			width: 100%;
 
 			img {
-				margin: 0 auto;
-				width: auto;
+				width: 100%;
+			}
+		}
+
+		&.main {
+			display: block;
+			margin: 0 0 (_size(element-margin) * 1.5) 0;
+			width: 100%;
+
+			img {
+				width: 100%;
+			}
+
+			@include breakpoint('<=small') {
+				margin: 0 0 _size(element-margin) 0;
 			}
 		}
 	}
