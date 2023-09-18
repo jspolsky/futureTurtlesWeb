@@ -11,6 +11,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="/assets/css/futureturtles.css" />
 </head>
 
 <body class="is-preload">
@@ -72,12 +73,20 @@
 
 					<p>Carousel of pictures here.</p>
 
-					<swiper-container style="width:100%;">
-						<swiper-slide><img src="images/01.webp" style="width:100%; height:100%; object-fit: contain; object-position: center; background-color: black;" /></swiper-slide>
-						<swiper-slide><img src="images/02.webp" style="width:100%; height:100%; object-fit: contain; object-position: center; background-color: black;" /></swiper-slide>
-						<swiper-slide><img src="images/03.webp" style="width:100%; height:100%; object-fit: contain; object-position: center; background-color: black;" /></swiper-slide>
-						...
-					  </swiper-container>
+
+					<div id="swiperWrapper">
+						<div style="position:relative;">
+							<button id="zoomButton" style="position:absolute; bottom: 1rem; right: 1rem; border: none; padding: 0; box-shadow: none; z-index: 1000;">
+								<img src="/assets/svg/fullscreen.svg" style="width:1.2rem; color:white; border: 1px solid white;"/>
+							</button>
+							<swiper-container navigation="true" pagination="true" keyboard="true" xstyle="width:100%; height:100%;">
+									<swiper-slide><img src="images/01.webp"/></swiper-slide>
+							<swiper-slide><img src="images/02.webp"/></swiper-slide>
+							<swiper-slide><img src="images/03.webp"/></swiper-slide>
+							<swiper-slide><img src="images/04.webp"/></swiper-slide>
+						</swiper-container>
+						</div>
+					</div>
 
 					<p>Conclusion.</p>
 
@@ -170,6 +179,38 @@
 		<script src="/assets/js/util.js"></script>
 		<script src="/assets/js/main.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+			const zoomButton = document.getElementById('zoomButton');
+			const swiperWrapper = document.getElementById('swiperWrapper');
+			const headerElement = document.getElementById('header');
+
+			let isFullscreen = false;
+
+			// Function to toggle fullscreen mode
+			function toggleFullscreen() {
+				isFullscreen = !isFullscreen;
+				
+				if (isFullscreen) {
+					swiperWrapper.classList.add('fullscreen');
+					headerElement.style.position = 'static';
+				} else {
+					swiperWrapper.classList.remove('fullscreen');
+					headerElement.style.position = 'fixed';
+				}
+			}
+
+			// Handle the click event for the zoom button
+			zoomButton.addEventListener('click', toggleFullscreen);
+
+			// Handle the keydown event for the ESC key
+			document.addEventListener('keydown', function (event) {
+				if (event.keyCode === 27 && isFullscreen) { // 27 is the key code for the ESC key
+				toggleFullscreen();
+				}
+			});
+			});
+		</script>
 
 </body>
 
