@@ -3,7 +3,7 @@ document.write(`
         <!-- Logo -->
         <div class="logo">
             <a href="/" class="title"><strong>Future Turtles 2025</strong>
-                <span class="extra">Rainbow Village</span></a>
+                <span class="extra">7:00 &amp; Ellison</span></a>
         </div>
     
         <!-- Nav. You can nest here if you need a dropdown -->
